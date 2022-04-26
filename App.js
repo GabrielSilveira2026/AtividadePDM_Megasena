@@ -1,14 +1,54 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import {Button, StyleSheet, Text, View } from 'react-native';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+import React, {useState} from 'react'
+
+export default class App extends React.Component{
+  constructor(props){
+    super(props);
+    this.state = {
+      Numeros: [],
+      texto: "Texto Inicial",
+      contador: 0
+    }
+  }
+  render(){
+    return(
+      <View style={styles.container}>
+        <Text>
+          {this.state.Numeros}
+        </Text>
+        <Button 
+        title="Ok" 
+        onPress={() => {
+              this.setState({
+                Numeros: teste() + ","
+              });
+          }
+        }
+        ></Button>
+      </View>
+    )
+  }
 }
+function teste() {
+  let numeros = []; 
+  for (let i = 0; i < 6; i++) {
+    do {
+      numeros[i] = Math.floor(Math.random() * 61);
+    } while (numeros[i] == numeros[i-1]);
+  }
+  return numeros;
+}
+// export default function App() {
+//   const [texto, setTexto] = useState('Texto inicial')
+//   return (
+//     <View style={styles.container}>
+//       <Text>{texto}</Text>
+//       <Button title="Alterar Texto" onPress={() => setTexto("Outro texto")}>
+//       </Button>
+//     </View>
+//   );
+// }
 
 const styles = StyleSheet.create({
   container: {
