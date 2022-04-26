@@ -32,23 +32,33 @@ export default class App extends React.Component{
 }
 function teste() {
   let numeros = []; 
+  let repetiu
   for (let i = 0; i < 6; i++) {
     do {
-      numeros[i] = Math.floor(Math.random() * 61);
-    } while (numeros[i] == numeros[i-1]);
+      let n = Math.floor(Math.random() * 61);
+      if (!repete(numeros, n)) {
+        numeros[i] = n
+      }
+      else(
+        repetiu = true
+      )
+    } while (repetiu);
   }
   return numeros;
 }
-// export default function App() {
-//   const [texto, setTexto] = useState('Texto inicial')
-//   return (
-//     <View style={styles.container}>
-//       <Text>{texto}</Text>
-//       <Button title="Alterar Texto" onPress={() => setTexto("Outro texto")}>
-//       </Button>
-//     </View>
-//   );
-// }
+
+function repete(vetor, numero) {
+  for (let i = 0; i < vetor.length; i++) {
+    if(vetor[i] != numero){
+      i++
+    }
+    else{
+      return true
+    }
+  }
+  return false
+}
+
 
 const styles = StyleSheet.create({
   container: {
